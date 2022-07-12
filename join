@@ -1,0 +1,50 @@
+ create table employe(eid int primary key,ename varchar(20),did int);
+create table department1(did int primary key,dname varchar(15),location varchar(20));
+
+insert into employe values(105,'sreedeep',50);
+ 
+insert into department1 values(10,'marketing','goa');
+insert into department1 values(20,'hr','kerala');
+
+insert into department1 values(30,'it','mumbai');
+
+insert into department1 values(40,'accounting','delhi');
+
+insert into department1 values(50,'sales','tamilnadu');
+select * from employe;
+select * from department1;
+select ename,dname from employe,department1;
+
+select employe.eid,employe.ename,employe.did,department1.did,department1.dname,department1.location from employe,department1 where employe.did = department1.did;
+select employe.*,department1.* from employe,department1 where employe.did = department1.did;
+
+
+create table employees(ename varchar(20) primary key,esalary int);
+insert into employees values(:ename,:esalary);
+select * from employees;
+
+create table job_salary(grade varchar(20) primary key,lower_sal int,higher_sal int); 
+insert into job_salary values(:grade,:lower_sal,:higher_sal);
+select * from job_salary;
+select e.ename,e.esalary,j.grade from employees e,job_salary j where e.esalary between j.lower_sal and j.higher_sa)
+
+create table Location(location varchar(20) primary key,city varchar(20));
+insert into Location values(:location,:city);
+delete from Location where city='keraka';
+
+select * from location;
+select e.eid,e.ename,e.did,d.did,d.dname,d.location from employe e,department1 d where e.did = d.did;
+
+select e.ename,e.eid,e.did,d.did,d.dname,d.location from employe e join department1 d on (e.did = d.did);
+select e.eid,e.ename,d.location from employe e join department1 d using (did);
+
+create table employe2(empno int primary key,eaddress varchar(20),hiredate date,ename varchar(20),salary int);
+insert into employe2 values(:emono,:eaddress,:hiredate,:ename,:salary);
+ select * from employe2;
+create table salary(grade varchar(20),bonus int,baisic int,empno int);
+insert into salary values(:grade,:bonus,:baisic,:empno);
+
+select * from salary;
+select ename,bonus,baisic from employe2,salary where bonus < baisic and employe2 .empno = salary.empno;
+
+
