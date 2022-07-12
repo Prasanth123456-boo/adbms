@@ -1,0 +1,30 @@
+create table acc(ac_no number(5),name varchar(20),balance number(6));
+insert into acc values(:ac_no,:name,:balance);
+select * from acc;
+
+create or replace procedure withdraw(ac_no1 in number,amount1 in number) is
+begin
+update acc set balance=balance-amount1 where
+ac_no=ac_no1;
+end;
+create or replace procedure deposit(ac_no1 in number,amount1 in number) is 
+begin
+update acc set balance=balance+amount1
+where
+ac_no=ac_no1;
+end;
+
+declare
+choice number;
+ac_no1 number(5);
+amount number(5);
+begin
+ac_no1:=:ac_no1;
+choice:=:choice;
+amount:=:amount;
+if choice=1 then
+deposit(ac_no1,amount);
+else
+withdraw(ac_no1,amount);
+end if;
+end
