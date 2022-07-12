@@ -1,0 +1,26 @@
+select * from empp;
+create view empview as select empno,ename,salary from empp;
+select * from empview;
+select ename  as "name" from empp;
+
+create view emp1 as select empno,salary from empp where salary>9000;
+
+update empview set salary=salary+5000 where ename='Animesh';
+
+create table empp3(empid number(5)primary key not null,first_name varchar(30),last_name varchar(30),job_id varchar(20),manager_id number(5),empsalary number,dept_id number(5));
+insert into empp3 values(:empid,:first_name,:last_name,:job_id,:manager_id,:empsalary,:dept_id);
+select * from empp3;
+
+create table dept1(dept_id number(5),dept_name varchar(20)not null,mgr_id number(30),loc_id number(20));
+insert into dept1 values(:dept_id,:dept_name,:mgr_id,:loc_id);
+select * from dept1;
+
+
+create or replace trigger trigger1 
+after insert on dept1 for each row
+begin
+update empp3 set empsalary=40000 where dept_id=20;
+end;
+ 
+ 
+ 
