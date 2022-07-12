@@ -1,0 +1,22 @@
+create table eb_cal(ebno number(5),name varchar(15),units number(4),charges number(3));
+insert into eb_cal(ebno,name,units) values(:ebno,:name,:units);
+select * from eb_cal;
+
+declare
+cursor cur is select * from eb_cal;
+begin
+
+for i in cur
+loop
+if i.units<=100 then
+update eb_cal set charges=i.units*1 where
+ebno=i.ebno;
+elsif i.units>100 and i.units<=200 then
+update eb_cal set charges=i.units*2 where
+ebno=i.ebno;
+else
+update eb_cal set charges=i.units*3 where
+ebno=i.ebno;
+end if;
+end loop;
+end
