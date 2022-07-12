@@ -1,0 +1,66 @@
+create table employees(empname varchar(10) primary key,street varchar(10),city varchar(20));
+create table works(empname varchar(10) primary key,companyname varchar(20),salary number);
+create table company(companyname varchar(20) primary key,city varchar(20));
+create table manager(empname varchar(10) primary key,managername varchar(20));
+
+insert into employees values('anju','konni','pta');
+insert into employees values('neethu','mannar','alpy');
+insert into employees values('arya','ranni','pta');
+insert into employees values('jomi','adoor','pta');
+insert into employees values('anu','chavara','klm');
+select * from employees;
+
+insert into works values('anju','abc',10000);
+insert into works values('akhil','def',20000);
+insert into works values('amrutha','hij',50000);
+insert into works values('vineeth','lmn',40000);
+insert into works values('ajosh','mno',10000);
+select * from works;
+
+insert into company values('abc','pta');
+insert into company values('neethu','alpy');
+insert into company values('def','alpy');
+insert into company values('jomi','pta');
+insert into company values('mno','alpy');
+select * from company;
+
+insert into manager values('anju','vineeth');
+insert into manager values('ajosh','amrutha');
+insert into manager values('anu','akhil');
+insert into manager values('akhila','amal');
+insert into manager values('vimal','vijay');
+select * from manager ;
+
+
+
+select empname from works where companyname='abc';
+
+select e.empname,city from employees e,works w where w.companyname='abc' and w.empname=e.empname;
+
+select * from employees where empname in(select empname from works where companyname='abc' and salary>5000);
+
+select e.empname from employees e,works w,company c where  e.empname=w.empname and w.companyname=c.companyname;
+
+select p.empname from employees p,employees r,manager m where p.empname=m.empname and m.managername=r.empname and p.street=r.street and p.city=r.city;
+
+select p.empname from employees p,employees r,manager m where p.empname=m.empname and m.managername=r.empname and p.street=r.street and p.city=r.city;
+
+select empname from works where companyname <> 'abc';
+
+select empname from works where salary > all(select salary from works where companyname ='abc');
+
+select empname from works t where salary >(select avg(salary) from works s where t.companyname=s.companyname);
+
+select companyname from works group by companyname having count(distinct empname)>=all(select count(distinct empname)from works group by companyname);
+
+select companyname from works group by companyname having sum(salary) <=all(select sum(salary) from works group by companyname);
+
+select companyname from works group by companyname having avg(salary)>(select avg(salary) from works where companyname='abc');
+
+update employees set city='klm' where empname='ravi';
+
+update works set salary=salary * 1.1 where companyname='abc'; 
+
+update works set salary=salary * 1.1 where empname in(select managername from manager) and companyname='abc';
+
+delete works where companyname='abc';
