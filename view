@@ -1,0 +1,17 @@
+create view empview  as select dno,dname,salary from department;
+select * from empview;
+
+create view empview2  as select dno,dname,salary from department where salary>40000;
+
+select * from empview2;
+insert  into empview(dno,dname,salary)values (106,'jeeva',100000);
+select * from empview;
+
+select salary as "basic pay" from department;
+
+update empview set salary=200000 where dname='jeeva';
+
+select * from empview;
+
+delete from empview where salary=30000;
+select * from empview;
