@@ -1,0 +1,30 @@
+select dno from department minus select empid from employee;
+select * from department;
+select distinct dno from department;
+alter table employee add(dno number);
+select * from employee;
+update employee set dno=1 where empid=1;
+update employee set dno=3 where empid=3;
+
+update employee set dno=5 where empid=5;
+
+update employee set dno=1 where empid=1;
+ select * from employee where dno  IN (select dno from department where salary <=50000);
+select * from employee where salary not between 20000 and 30000;
+select * from employee where salary in(20000,30000);
+select * from employee where salary not in(20000,30000);
+
+insert into department values(7,'','parvathy',20000);
+select * from department where dname IS NULL;
+select * from department where dname IS NOT NULL;
+select ename salary from employee where ename like 'a%';
+select ename salary from employee where ename like 'a%';
+select ename salary from employee where ename like '_n%';
+select ename salary from employee where ename like '%a%';
+select ename salary from employee where ename like '%a%';
+
+
+
+
+
+
